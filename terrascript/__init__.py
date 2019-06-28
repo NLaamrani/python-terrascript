@@ -26,8 +26,8 @@ from collections import defaultdict, UserDict
 logger = logging.getLogger(__name__)
 
 
-THREE_TIER_ITEMS = ['data', 'resource', 'provider']
-TWO_TIER_ITEMS = ['variable', 'module', 'output', 'provisioner']
+THREE_TIER_ITEMS = ['data', 'resource']
+TWO_TIER_ITEMS = ['variable', 'module', 'output', 'provisioner', 'provider']
 ONE_TIER_ITEMS = ['terraform']
 
 
@@ -250,9 +250,8 @@ class provider(_base):
     _class = 'provider'
 
     def __init__(self, name, **kwargs):
-       alias = kwargs.get('alias', '__DEFAULT__')
        self._type = name
-       super(provider, self).__init__(alias, **kwargs)
+       super(provider, self).__init__(name, **kwargs)
 
 
 class terraform(_base):
